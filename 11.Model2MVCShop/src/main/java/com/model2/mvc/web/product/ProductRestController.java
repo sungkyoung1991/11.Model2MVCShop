@@ -46,51 +46,13 @@ public class ProductRestController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
-//	@RequestMapping(value = "json/addReply", method = RequestMethod.POST)
-//	public List<Reply> addReply(@RequestBody Reply reply) throws Exception {
-//
-//		System.out.println("/addReply");
-//		
-//		Product product = new Product();
-//		product.setReply(reply);
-//		
-//		replyService.insertReply(reply);
-//		
-//		List<Reply> list = new ArrayList<Reply>();
-//		
-//		list.add(reply);
-//		
-//			
-//		return list;
-//			
-//		
-//	}
-
-	
-//	@RequestMapping(value="json/productReply/{prodNo}", method=RequestMethod.POST)
-//	public Product productReply(@RequestBody Product product, @PathVariable int prodNo) throws Exception{
-//		
-//		System.out.println("reply start..............................");
-//		System.out.println("prodNo........" + prodNo);
-//		System.out.println("product........" + product);
-//		System.out.println("ch");
-//		
-//		Product returnProduct = productService.getProduct(prodNo);
-//		
-//		returnProduct.setReply(product.getReply());
-//		
-//		productService.updateReply(returnProduct);
-//		
-//		return returnProduct;
-//		
-//	}
 
 	@RequestMapping(value = "json/addProduct", method = RequestMethod.POST)
 	public Product addProduct(@RequestBody Product product, @RequestParam("file") MultipartFile file) throws Exception{
 		System.out.println("json/addProduct........");
 		if(file.getSize()>0){
 			product.setManuDate(product.getManuDate().replaceAll("-", ""));
-			String temDir ="/Users/sungkyoung-kim/git/10.Model2MVCShop(Ajax)/10.Model2MVCShop(Ajax)/WebContent/images/uploadFiles";
+			String temDir ="/Users/sungkyoung-kim/git/11.Model2MVCShop/11.Model2MVCShop/WebContent/images/uploadFiles";
 			File UploadedFile = new File(temDir, file.getOriginalFilename());
 			product.setFileName(file.getOriginalFilename());
 			file.transferTo(UploadedFile);
