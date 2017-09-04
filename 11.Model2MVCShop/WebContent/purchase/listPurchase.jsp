@@ -2,14 +2,71 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
+<!DOCTYPE html>
+
+<html lang="ko">
+
 <head>
-<title>구매 목록조회</title>
-
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
-
-
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<meta charset="EUC-KR">
+	
+	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	<!-- Bootstrap Dropdown Hover CSS -->
+   <link href="/css/animate.min.css" rel="stylesheet">
+   <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+   
+    <!-- Bootstrap Dropdown Hover JS -->
+   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+   
+   <style>
+   
+    body {
+            padding-top : 70px;
+            background-image: url('../images/uploadFiles/10.jpg');
+            min-height:100%;
+        min-width:1024px;
+        width:100%;
+        height:auto;
+        position:fixed;
+        top:0;
+        left:0;
+        position:relative;
+        }
+        
+             img.bg{
+        min-height:100%;
+        min-width:1024px;
+        width:100%;
+        height:auto;
+        position:fixed;
+        top:0;
+        left:0;
+        }
+        
+        @media screen and (max-width: 1024px){
+        	img.bg{
+        		left:50%;
+        		margin-left: -512px:
+        	}
+        }
+        
+        div#container{
+        	position:relative;
+        }
+        
+        div > *{
+        color: orange;
+        }
+   
+   </style>
+   
 <script type="text/javascript">
 
 	
@@ -20,9 +77,10 @@
 	
 	$(function(){
 	 	 $(".ct_list_pop td:contains('정보수정하기')").on("click",function(){
+	 		console.log("수정찌금"+ $(this).html());
 	 		  self.location="/purchase/getPurchase?tranNo="+$($("p")[0],this).text().trim()+"&prodNo="
 	 				  +$("span",this).text().trim();
-	 		console.log("수정찌금"+ $(this).html());
+	 		
 	 	 });
 	});
 	
@@ -40,48 +98,49 @@
 </script>
 </head>
 
-<body bgcolor="#ffffff" text="#000000">
+<body>
 
-<div style="width: 98%; margin-left: 10px;">
+<jsp:include page="/layout/toolbar.jsp" />
+
 
 <form name="detailForm">
 
-<table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
-	<tr>
-		<td width="15" height="37"><img src="/images/ct_ttl_img01.gif"width="15" height="37"></td>
-		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="93%" class="ct_ttl01">구매 목록조회</td>
-				</tr>
-			</table>
-		</td>
-		<td width="12" height="37"><img src="/images/ct_ttl_img03.gif"	width="12" height="37"></td>
-	</tr>
-</table>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
+				<div class="container">
+					<div class="page-header text-info">
+	      		 <h3>상품 관리</h3>
+	      		 </div>
+	      		 </div>
+
+<div class="row">
+	    
+		    <div class="col-md-6 text-left">
+		    	<h6>
+		    		전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
+		    	</h6>
+		    </div>
+		    
+		     <table class="table table-hover table-striped" >
+		     
+	<thead>
 	<tr>
-		<td colspan="11">전체 ${ resultPage.totalCount } 건수, 현재 ${resultPage.currentPage } 페이지</td>
-	</tr>
-	<tr>
-		<td class="ct_list_b" width="100">상품번호</td>
+		<td class="ct_list_b" width="100" align="center">상품번호</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">물품명</td>
+		<td class="ct_list_b" width="150" align="center">물품명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">배송주소</td>
+		<td class="ct_list_b" width="150" align="center">배송주소</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">전화번호</td>
+		<td class="ct_list_b" align="center">전화번호</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">배송현황</td>
-		<td class="ct_line02"></td>
-		<td class="ct_list_b">정보수정</td>
+		<td class="ct_list_b" align="center">배송현황</td>
+		<td class="ct_line02" align="center"></td>
+		<td class="ct_list_b" align="center">정보수정</td>
 		
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">상품수령</td>
-		
-		
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
@@ -98,9 +157,9 @@
 		<td align="center"></td>
 		<td align="center">${purchase.purchaseProd.prodName }</td>
 		<td align="left"></td>
-		<td>${purchase.divyAddr }</td>
+		<td align="center">${purchase.divyAddr }</td>
 		<td align="left"></td>
-		<td>${purchase.receiverPhone}</td>
+		<td align="center">${purchase.receiverPhone}</td>
 		<td align="left"></td>
 		<td>
 		
@@ -115,7 +174,7 @@
 		배송완료
 		</c:if>
 		</td>
-		<td align="left"><td align="left">
+		<td align="left"><td align="center">
 		<c:if test="${purchase.tranCode=='1  '}">
 		<div style="display:none">
 		<p>${purchase.tranNo }</p>
@@ -129,7 +188,7 @@
 		</c:if>
 		
 		
-		<td align="left"></td>
+		<td align="center"></td>
 		<td>
 		
 		<c:if test="${purchase.tranCode=='1  '}">
@@ -164,7 +223,7 @@
 	
 	</c:forEach>
 
-
+</tbody>
 </table>
 
 <!-- PageNavigation Start... -->

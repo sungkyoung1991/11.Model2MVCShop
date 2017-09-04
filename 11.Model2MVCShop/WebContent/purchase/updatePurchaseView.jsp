@@ -1,20 +1,84 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 
-<%-- <%
-	Product product = (Product)request.getAttribute("product");
-%> --%>
+<html lang="ko">
 
-<html>
+
 <head>
-<title>구매정보수정</title>
 
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="../javascript/calendar.js">
-</script>
+<!DOCTYPE html>
+
+<html lang="ko">
+
+ <head>
+
+	<meta charset="EUC-KR">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../javascript/calendar.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" /> <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+	
+   <link href="/css/animate.min.css" rel="stylesheet">
+   <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+   
+   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+	
+	<style>
+        body {
+            	padding-top: 70px;
+				height: 100%;
+				background-image: url('../images/uploadFiles/20.jpg');
+				background-repeat: no-repeat;
+				background-size: cover;
+        }
+        
+              img.bg{
+        min-height:100%;
+        min-width:1024px;
+        width:100%;
+        height:auto;
+        position:fixed;
+        top:0;
+        left:0;
+        }
+        
+        @media screen and (max-width: 1024px){
+        	img.bg{
+        		left:50%;
+        		margin-left: -512px:
+        	}
+        }
+        
+        div#container{
+        	position:relative;
+        }
+        
+        
+       strong{
+	color:yellow;
+}
+
+div.col-xs-8.col-md-4{
+	color: yellow;
+}
+        
+        
+        
+   	</style> 
+
+
 
 <script type="text/javascript">
 
@@ -24,17 +88,27 @@ function fncUpdatePurchase(){
 }
 
 $(function(){
-	$(".ct_btn01:contains('수정')").on("click",function(){
+	$("button:contains('수정')").on("click",function(){
 		console.log("수정 .... : " + $(this).html());
 		fncUpdatePurchase();
 	});
 });
 
 $(function(){
-	$(".ct_btn01:contains('취소')").on("click",function(){
-		history.go(01);
+	$("button:contains('취소')").on("click",function(){
+		history.go(-1);
 	});
 });
+
+$(function(){
+	   $('#divyDate').datepicker({ 
+		   
+		   dateFormat: "yy-mm-dd",
+		   showMonthAfterYear: true,
+		   dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+		   monthNames : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+	        });
+	  });
 
 
 
@@ -42,32 +116,87 @@ $(function(){
 </script>
 </head>
 
-<body bgcolor="#ffffff" text="#000000">
+<body>
 
-<form name="detailForm"  >
+<form name="detailForm" class="form-horizontal">
+
+<jsp:include page="/layout/toolbar.jsp" />
 
 <input type="hidden" name="prodNo" value= "${product.prodNo }"/>
 <input type="hidden" name="tranNo" value="${purchase.tranNo }"/>
 <input type="hidden" name="tranCode" value="${purchase.tranCode }"/>
 
-<table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td width="15" height="37">
-			<img src="/images/ct_ttl_img01.gif" width="15" height="37"/>
-		</td>
-		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="93%" class="ct_ttl01">구매정보수정</td>
-					<td width="20%" align="right"></td>
-				</tr>
-			</table>
-		</td>
-		<td width="12" height="37">
-			<img src="/images/ct_ttl_img03.gif" width="12" height="37"/>
-		</td>
-	</tr>
-</table>
+
+	<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자아이디</strong></div>
+			<div class="col-xs-8 col-md-4">${user.userId}</div>
+		</div>
+		
+		<hr/>
+		 
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매방법</strong></div><br/><br/>
+	  		<select class="form-control" name="paymentOption">
+			  <option value="1" selected="selected">현금구매</option>
+			  <option value="2">신용구매</option>
+			</select>
+		</div>
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자이름</strong></div>
+			<input type="text" id="receiverName" name="receiverName" class="form-control" value="${purchase.receiverName}">
+		</div>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자연락처</strong></div>
+			<input type="text" id="receiverPhone" name="receiverPhone" class="form-control" value="${purchase.receiverPhone}">
+		</div>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자주소</strong></div>
+			<input type="text" id="divyAddr" name="divyAddr" class="form-control" value="${purchase.divyAddr}">
+		</div>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자요청사항</strong></div>
+			<input type="text" id="divyRequest" name="divyRequest" class="form-control" value="${purchase.divyRequest}">
+		</div>
+		
+			<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>배송희망일자</strong></div>
+				<div class="col-sm-4">
+					<input type="text" id="divyDate" name="divyDate"
+						class="form-control" readonly="readonly" style="width: 500px; height: 25px">
+				</div>
+			</div>
+			
+				
+            
+            
+             <div class="form-group">
+		    <div class="col-sm-offset-4  col-sm-4 text-center">
+		      <button type="button" class="btn btn-primary"  >수정</button>
+			  <a class="btn btn-primary btn" href="#" role="button">취소</a>
+		    </div>
+		  </div>
+		  
+		</form>
+
+
+
+
+
+
+
+
+
+
+<%--
+
+
+
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 13px;">
 
@@ -167,7 +296,7 @@ $(function(){
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" readonly="readonly" name="divyDate" <%-- value="${purchase.orderDate}" --%> 	
+			<input type="text" readonly="readonly" name="divyDate" value="${purchase.orderDate}" 	
 						class="ct_input_g" style="width: 100px; height: 19px" maxLength="10" minLength="6">&nbsp;
 						<img 	src="../images/ct_icon_date.gif" width="15" height="15" 
 									onclick="show_calendar('document.detailForm.divyDate', document.detailForm.divyDate.value)" />
@@ -209,6 +338,5 @@ $(function(){
 	</tr>
 </table>
 </form>
-
 </body>
-</html>
+</html> --%>

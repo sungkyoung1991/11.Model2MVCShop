@@ -23,7 +23,38 @@
     	 body >  div.container{ 
         	border: 3px solid #D6CDB7;
             margin-top: 10px;
+            
         }
+        
+         body >  div.container{ 
+        	border: 3px solid #D6CDB7;
+            margin-top: 10px;
+            /* background-image: url('/images/uploadFiles/18.jpg'); */
+            
+        }
+        
+        img.bg{
+        min-height:100%;
+        min-width:1024px;
+        width:100%;
+        height:auto;
+        position:fixed;
+        top:0;
+        left:0;
+        }
+        
+        @media screen and (max-width: 1024px){
+        	img.bg{
+        		left:50%;
+        		margin-left: -512px:
+        	}
+        }
+        
+        div#container{
+        	position:relative;
+        }
+        
+        
     </style>
     
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -56,6 +87,8 @@
 		});	
 		
 		
+		
+		
 		//============= 회원원가입화면이동 =============
 		$( function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -64,16 +97,20 @@
 			});
 		});
 		
+		
 	</script>		
 	
 </head>
 
 <body>
 
+<img class="bg" src="/images/uploadFiles/18.jpg"/>
+<div id="c1">
+
 	<!-- ToolBar Start /////////////////////////////////////-->
 	<div class="navbar  navbar-default">
         <div class="container">
-        	<a class="navbar-brand" href="/index.jsp">Model2 MVC Shop</a>
+        	<a class="navbar-brand" href="/index.jsp">adidas</a>
    		</div>
    	</div>
    	<!-- ToolBar End /////////////////////////////////////-->	
@@ -84,15 +121,13 @@
 		<div class="row">
 		
 			<div class="col-md-6">
-					<img src="/images/logo-spring.png" class="img-rounded" width="100%" />
+					<!-- <img src="../images/uploadFiles/18.jpg" class="img-rounded" width="100%" /> -->
 			</div>
 	   	 	
 	 	 	<div class="col-md-6">
 	 	 	
 		 	 	<br/><br/>
 				
-				<div class="jumbotron">	 	 	
-		 	 		<h1 class="text-center">로 &nbsp;&nbsp;그 &nbsp;&nbsp;인</h1>
 
 			        <form class="form-horizontal">
 		  
@@ -112,8 +147,8 @@
 					  
 					  <div class="form-group">
 					    <div class="col-sm-offset-4 col-sm-6 text-center">
-					      <button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-					      <a class="btn btn-primary btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
+					      <button type="button" class="btn btn-warning"  >로 &nbsp;그 &nbsp;인</button>
+					      <a class="btn btn-warning btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
 					    </div>
 					  </div>
 			
@@ -127,7 +162,7 @@
   	 	
  	</div>
  	<!--  화면구성 div end /////////////////////////////////////-->
-
+</div>
 </body>
 
 </html>
