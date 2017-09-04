@@ -20,34 +20,6 @@ public class ListTypeHandler extends BaseTypeHandler<List<String>> {
 		// TODO Auto-generated constructor stub
 	}
 
-	/*@Override
-	public Object getResult(ResultSet rs, String columnIndex) throws SQLException {
-		return rs.getString(columnIndex);
-	}
-
-	@Override
-	public Object getResult(ResultSet rs, int columnIndex) throws SQLException {
-		return rs.getString(columnIndex);
-	}
-
-	@Override
-	public Object getResult(CallableStatement cStmt, int parameterIndex) throws SQLException {
-		// TODO Auto-generated method stub
-		return cStmt.getObject(parameterIndex);
-	}
-
-	@Override
-	public void setParameter(PreparedStatement pStmt, int i, Object parameter, JdbcType jdbcType) throws SQLException {
-		
-		//fileNameÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ List·Î casting
-		List<String> objects = (List<String>)parameter;
-		String str = "";
-		for(String obj : objects) {
-			str += obj;
-		}
-		pStmt.setObject(i, str, jdbcType.TYPE_CODE);
-		
-	}*/
 
 	@Override
 	public List<String> getNullableResult(ResultSet rs, String columnIndex) throws SQLException {
@@ -106,22 +78,13 @@ public class ListTypeHandler extends BaseTypeHandler<List<String>> {
 				return null;
 			}
 	}
-
-	/*
-	 * 
-	String sql = "update set prod_no = ?, prod_name = ?, image_file=?";
-	PreparedStatement pStmt = con.prepareStatement(sql);
-	pStmt.setString(4, product.getFileName() ::: return type : List<String>);
-	*
-	*/
 	
 	
-
 	@Override
 	public void setNonNullParameter(PreparedStatement pStmt, int i, List<String> parameter, JdbcType jdbcType)
 			throws SQLException {
 		// TODO Auto-generated method stub
-		//fileNameÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ List·Î casting
+		//fileNameï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ Listï¿½ï¿½ casting
 		System.out.println("===========================================");
 		System.out.println("setNonNullParameter : pStmt = "+pStmt+", i = "+i+", parameter = "+parameter);
 		StringBuffer buffer = new StringBuffer(parameter.toString());

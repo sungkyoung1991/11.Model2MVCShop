@@ -2,11 +2,84 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-<html>
+<!DOCTYPE html>
+
+<html lang="ko">
+
+
 <head>
 
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+ <head>
+
+	<meta charset="EUC-KR">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../javascript/calendar.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" /> <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+	
+   <link href="/css/animate.min.css" rel="stylesheet">
+   <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+   
+   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+	
+	<style>
+   body {
+	padding-top: 70px;
+	height: 100%;
+	background-image: url('../images/uploadFiles/13.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+label {
+	color: orange;
+}
+
+img.bg {
+	min-height: 100%;
+	min-width: 1024px;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+@media screen and (max-width: 1024px) {
+	img.bg {
+		left: 50%;
+		margin-left: -512px:
+	}
+}
+
+div#container {
+	position: relative;
+}
+.text-info{
+	color:yellow;
+}
+
+strong{
+	color:yellow;
+}
+
+div.col-xs-8.col-md-4{
+	color: yellow;
+}
+
+        
+        
+   	</style> 
 <script type="text/javascript">
 
 
@@ -28,154 +101,80 @@ $(function(){
 </script>
 </head>
 <title>Insert title here</title>
-<body bgcolor="#ffffff" text="#000000">
+<body>
 
-<form name="detailForm" method="post">
+<form name="detailForm" class="form-horizontal">
 
-<table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
-	<tr>
-		<td width="15" height="37"><img src="/images/ct_ttl_img01.gif"	width="15" height="37"></td>
-		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="93%" class="ct_ttl01">구매상세조회</td>
-					<td width="20%" align="right">&nbsp;</td>
-				</tr>
-			</table>
-		</td>
-		<td width="12" height="37">
-			<img src="/images/ct_ttl_img03.gif"  width="12" height="37"/>
-		</td>
-	</tr>
-</table>
+<jsp:include page="/layout/toolbar.jsp" />
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 13px;">
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">
-			물품번호 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="105">${ purchase.tranNo}</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">
-			구매자아이디 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${purchase.buyer.userId}</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
+	<div class="page-header">
+	       <h3 class="text-info">다음과 같이 수정 되었습니다.</h3>
+	    </div>
 
+
+<div class="container">
 	
-	<tr>
-		<td width="104" class="ct_write">구매방법</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
+	    
+	    <div class="row">
+	  		<div class="col-xs-4 col-md-2"><strong>상품번호</strong></div>
+			<div class="col-xs-8 col-md-4">${purchase.tranNo}</div>
+		</div>
 		
-		
-		<c:if test="${purchase.paymentOption=='1  ' }">
-		현금구매
-		</c:if>
-		<c:if test="${purchase.paymentOption=='2  ' }">
-		신용구매</c:if>
-		
-		
-		
-		
-		
-		
-		</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
+			<hr/>
+			
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매방법</strong></div>
+				<div class="col-sm-4">
+				<div class="col-xs-8 col-md-4">
+				<c:if test="${purchase.paymentOption==1}">
+				현금구매
+				</c:if>
+				<c:if test="${purchase.paymentOption==2}">
+				신용구매
+				</c:if>
+				</div>
+			</div>
+		</div>
 	
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자아이디</strong></div>
+			<div class="col-xs-8 col-md-4">${user.userId}</div>
+		</div>
+		
+			<hr/>
+			
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자연락처</strong></div>
+			<div class="col-xs-8 col-md-4">${purchase.receiverPhone}</div>
+		</div>
+			<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매자주소</strong></div>
+			<div class="col-xs-8 col-md-4">${purchase.divyAddr }</div>
+		</div>
+			<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>구매요청사항</strong></div>
+			<div class="col-xs-8 col-md-4">${purchase.divyRequest }</div>
+		</div>
+			<hr/>
+			
+			</div>
+			
+			
+		</form>
+		
+		</body>
+		
+		</html>
+		
+		
 
-	<tr>
-		<td width="104" class="ct_write">
-			구매자이름 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${purchase.receiverName} </td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">구매자연락처</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${purchase.receiverPhone}</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">구매자주소</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${purchase.divyAddr}</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">구매요청사항</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${purchase.divyRequest}</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	<tr>
-		<td width="104" class="ct_write">배송희망날짜</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${purchase.divyDate}</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-</table>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
-	<tr>
-		<td width="53%"></td>
-		<td align="right">
 
-		<table border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td width="17" height="23">
-					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
-				</td>
-				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-					<!-- <a href="/purchase/listPurchase">확인</a> -->
-					확인
-				</td>
-				<td width="14" height="23">
-					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
-				</td>
-			</tr>
-		</table>
 
-		</td>
-	</tr>
-</table>
-</form>
-
-</body>
-</html>

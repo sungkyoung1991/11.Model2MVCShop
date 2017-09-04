@@ -162,28 +162,76 @@ public class ProductController {
 		return modelAndView;
 	}
 
+//	@RequestMapping("updateProduct")
+//	public ModelAndView updateProduct(@ModelAttribute("product") Product product, @RequestParam(value = "menu", required = false ) String menu)
+//			throws Exception {
+//
+//		System.out.println("/updateProduct");
+//		
+//		product.setManuDate(product.getManuDate().replaceAll("-", ""));
+//		
+////		product.setFileName(file.getOriginalFilename());
+//
+//		productService.updateProduct(product);
+//		System.out.println("updateProduct : " + product);
+//
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("forward:/product/updateProduct.jsp");
+//		modelAndView.addObject("product", product);
+//		modelAndView.addObject("menu", menu);
+//
+//		return modelAndView;
+//	}
+	
+	
+	
+	
+	
 	@RequestMapping("updateProduct")
-	public ModelAndView updateProduct(@ModelAttribute("product") Product product, @RequestParam(value = "menu", required = false ) String menu)
+	public ModelAndView updateProduct(@ModelAttribute("product") Product product, @RequestParam(value = "menu", required = false ) String menu,
+			@RequestParam("file") MultipartFile file)
 			throws Exception {
-
-		System.out.println("/updateProduct");
-
-		System.out.println("update menu Check" + menu);
 		
-		System.out.println("product......" + product);
-
+	if(file.getSize()>0){
 		product.setManuDate(product.getManuDate().replaceAll("-", ""));
-
-		productService.updateProduct(product);
-		System.out.println("updateProduct : " + product);
-
+		String temDir ="/Users/sungkyoung-kim/git/11.Model2MVCShop/11.Model2MVCShop/WebContent/images/uploadFiles";
+		File UploadedFile = new File(temDir, file.getOriginalFilename());
+		product.setFileName(file.getOriginalFilename());
+		file.transferTo(UploadedFile);
 		ModelAndView modelAndView = new ModelAndView();
+		productService.updateProduct(product);
 		modelAndView.setViewName("forward:/product/updateProduct.jsp");
-		modelAndView.addObject("product", product);
-		modelAndView.addObject("menu", menu);
-
+		modelAndView.addObject(product);
 		return modelAndView;
+		}else{
+			product.setManuDate(product.getManuDate().replaceAll("-", ""));
+			ModelAndView modelAndView = new ModelAndView();
+			productService.updateProduct(product);
+			modelAndView.setViewName("forward:/product/updateProduct.jsp");
+			modelAndView.addObject(product);
+			return modelAndView;
+			
+		}
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping("listProduct")
 	public ModelAndView getProductList(@ModelAttribute("search") Search search, @ModelAttribute("page") Page page)

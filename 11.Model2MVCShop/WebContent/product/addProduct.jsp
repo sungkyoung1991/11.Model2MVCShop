@@ -2,25 +2,94 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE html>
 
-<html>
+<html lang="ko">
+
 <head>
-<title>상품등록</title>
 
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
+	<meta charset="EUC-KR">
 
- 
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!--   jQuery , Bootstrap CDN  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../javascript/calendar.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" /> <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+
+	
+	
+
+<!-- Bootstrap Dropdown Hover CSS -->
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+
+<!-- Bootstrap Dropdown Hover JS -->
+<script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+
+<!--  CSS 추가 : 툴바에 화면 가리는 현상 해결 :  주석처리 전, 후 확인-->
+<style>
+ body {
+	padding-top: 70px;
+	height: 100%;
+	/* background-color: black; */
+}
+        
+           img.bg{
+        min-height:100%;
+        min-width:1024px;
+        width:100%;
+        height:auto;
+        position:fixed;
+        top:0;
+        left:0;
+        }
+        
+        @media screen and (max-width: 1024px){
+        	img.bg{
+        		left:50%;
+        		margin-left: -512px:
+        	}
+        }
+        
+        div#container{
+        	position:relative;
+        }
+        
+        .container > *{
+        	color:orange;
+        
+        }
+        
+        .page-header{
+        	color:black;
+        	font-size:xx-large;
+        }
+   	</style>
+
+
+
+
 <script type="text/javascript">
 
 $(function(){
-	$(".ct_btn01:contains('확인')").on("click",function(){
+	$("button:contains('확인')").on("click",function(){
 			self.location="/product/listProduct?menu=manage";
 		});
 });
 
 $(function(){
-	$(".ct_btn01:contains('추가등록')").on("click",function(){
+	$("button:contains('추가등록')").on("click",function(){
 			self.location="../product/addProductView.jsp;";
 		});
 });
@@ -29,9 +98,83 @@ $(function(){
 
 </head>
  
-<body bgcolor="#ffffff" text="#000000">
+<body>
+<jsp:include page="/layout/toolbar.jsp" />
 
-<table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
+
+<!-- <img class="bg" src="/images/uploadFiles/21.jpg"/> -->
+
+
+
+
+<div class="container">
+	
+		<div class="page-header">
+	       <h3 class=" text-info">상품등록</h3>
+	       <h5 class="text-muted">상품이<strong class="text-danger">정상적으로</strong>등록되었습니다 ! </h5>
+	    </div>
+	
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2"><strong>상품명</strong></div>
+			<div class="col-xs-8 col-md-4">${product.prodName}</div>
+		</div>
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>상세정보</strong></div>
+			<div class="col-xs-8 col-md-4">${product.prodDetail}</div>
+		</div>
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>제조일자</strong></div>
+			<div class="col-xs-8 col-md-4">${product.manuDate}</div>
+		</div>
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>가격</strong></div>
+			<div class="col-xs-8 col-md-4">${product.price }</div>
+		</div>
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2"><strong>상품이미지</strong></div>
+			<img src="../images/uploadFiles/${product.fileName }" width="350" height="150"/>
+		</div>
+		
+		<hr/>
+		
+		
+		<div class="row">
+	  		<div class="col-md-12 text-center ">
+	  			<button type="button" class="btn btn-primary">확인</button>
+	
+	  			<button type="button" class="btn btn-primary">추가등록</button>
+	  		</div>
+		</div>
+		
+		<br/>
+		
+ 	</div>
+ 	<!--  화면구성 div Start /////////////////////////////////////-->
+
+
+
+
+
+
+
+
+
+
+
+
+<%-- <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td width="15" height="37">
 			<img src="/images/ct_ttl_img01.gif" 	width="15" height="37"/>
@@ -131,12 +274,12 @@ $(function(){
 				<tr>					
 					<td width="17" height="23">
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
-					</td>
+					</td> --%>
 					
 					
 					
-					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<!-- <a href="/product/listProduct?menu=manage">확인</a> -->
+					<!-- <td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
+						<a href="/product/listProduct?menu=manage">확인</a>
 						확인
 					</td>
 					
@@ -147,7 +290,7 @@ $(function(){
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<!-- <a href="../product/addProductView.jsp;">추가등록</a> -->
+						<a href="../product/addProductView.jsp;">추가등록</a>
 						추가등록
 					</td>
 					<td width="14" height="23">
@@ -157,7 +300,7 @@ $(function(){
 			</table>
 		</td>
 	</tr>
-</table>
+</table> -->
 
 </body>
 </html>
