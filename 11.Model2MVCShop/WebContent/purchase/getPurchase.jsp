@@ -85,7 +85,6 @@
 	$(function(){
 		$("button:contains('수정')").on("click",function(){
 			console.log("수정.." +$(this).html())
-			/* self.location="/purchase/updatePurchaseView?prodNo="+$("#prodNo",this).text().trim()+"&tranNo="+$("#tranNo",this).text().trim(); */
 			self.location="/purchase/updatePurchaseView?prodNo="+$("#prodNo").val()+"&tranNo="+$("#tranNo").val();
 		});
 	});
@@ -103,7 +102,7 @@
 	<form name="detailForm" class="form-horizontal">
 	
 	<input type="hidden" id="prodNo" value="${purchase.purchaseProd.prodNo }"/>
-	<input type="hidden" id="tranNo" value = "${purchase.tranNo  }"/>
+	<input type="hidden" id="tranNo" value = "${purchase.tranNo}"/>
 	
 	<div class="container">
 	
@@ -156,11 +155,15 @@
 		
 		<div class="row">
 	  		<div class="col-xs-4 col-md-2 "><strong>구매방법</strong></div>
+	  		
 	  		<c:if test="${purchase.paymentOption=='1  ' }">
-		현금구매
-		</c:if>
-		<c:if test="${purchase.paymentOption=='2  ' }">
-		신용구매</c:if>
+				현금구매
+			</c:if>
+			
+			<c:if test="${purchase.paymentOption=='2  ' }">
+				신용구매
+			</c:if>
+			
 		</div>
 		
 		<hr/>

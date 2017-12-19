@@ -123,6 +123,9 @@ public class PurchaseController {
 	public String updatePurchaseView(@RequestParam("tranNo") int tranNo, Model model) throws Exception {
 
 		System.out.println("/updatePurchaseView");
+		
+		System.out.println("tranNo.....확인." + tranNo );
+		
 
 		Purchase purchase = purchaseService.getPurchase(tranNo);
 

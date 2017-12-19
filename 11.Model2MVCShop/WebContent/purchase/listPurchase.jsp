@@ -76,7 +76,8 @@
 	} 
 	
 	$(function(){
-	 	 $(".ct_list_pop td:contains('정보수정하기')").on("click",function(){
+	 	 /* $(".ct_list_pop td:contains('정보수정하기')").on("click",function(){ */
+	 	$(".updateInfo").on("click",function(){
 	 		console.log("수정찌금"+ $(this).html());
 	 		  self.location="/purchase/getPurchase?tranNo="+$($("p")[0],this).text().trim()+"&prodNo="
 	 				  +$("span",this).text().trim();
@@ -85,7 +86,8 @@
 	});
 	
 	$(function(){
-	 	 $(".ct_list_pop:contains('상품수령')").on("click",function(){
+	 	 /* $(".ct_list_pop:contains('상품수령')").on("click",function(){ */
+	 		 $(".inHandle").on("click",function(){
 				self.location="/purchase/updateTranCode?tranNo="
 					+$($("p")[0],this).text().trim()+"&prodNo="+$($("p",this)[1]).text().trim()+"&tranCode="+$($("p",this)[2]).text().trim()+
 						"&menu=${param.menu}";
@@ -174,13 +176,17 @@
 		배송완료
 		</c:if>
 		</td>
-		<td align="left"><td align="center">
+		<td align="left">
+		<td align="center">
 		<c:if test="${purchase.tranCode=='1  '}">
-		<div style="display:none">
-		<p>${purchase.tranNo }</p>
-		<span>${purchase.purchaseProd.prodNo }</span>
-		</div>
-		정보수정하기
+		
+			<div class="updateInfo">
+				정보수정하기
+				<div style="display:none">
+					<p>${purchase.tranNo }</p>
+					<span>${purchase.purchaseProd.prodNo }</span>
+				</div>
+			</div>
 		</td>
 		</c:if>
 		<c:if test="${purchase.tranCode!='1  '}">
@@ -195,12 +201,17 @@
  			대기
 		</c:if>
 		<c:if test="${purchase.tranCode=='2  '}">
-		<div style="display:none">
-		<p>${purchase.tranNo }</p>
-		<p>${purchase.purchaseProd.prodNo }</p>
-		<p>${purchase.tranCode }</p>
+		
+		
+		<div class="inHandle" role="button">
+			<div style="display:none">
+				<p>${purchase.tranNo }</p>
+				<p>${purchase.purchaseProd.prodNo }</p>
+				<p>${purchase.tranCode }</p>
+			</div>
+				상품수령
 		</div>
-			상품수령
+		
 		</td>
 		</c:if>
 		<c:if test="${purchase.tranCode=='3  '}">
@@ -232,7 +243,7 @@
 		<td align="center">
 		   <input type="hidden" id="currentPage" name="currentPage" value="1"/>	
 			
-			<jsp:include page="../common/pageNavigator.jsp"/>
+			<jsp:include page="../common/pageNavigator_new.jsp"/>
 		
     	</td>
 	</tr>

@@ -6,13 +6,6 @@
 <html lang="ko">
 
 
-<head>
-
-
-<!DOCTYPE html>
-
-<html lang="ko">
-
  <head>
 
 	<meta charset="EUC-KR">
@@ -137,9 +130,19 @@ $(function(){
 		<div class="row">
 	  		<div class="col-xs-4 col-md-2 "><strong>구매방법</strong></div><br/><br/>
 	  		<select class="form-control" name="paymentOption">
-			  <option value="1" selected="selected">현금구매</option>
-			  <option value="2">신용구매</option>
+	  		
+	  					<c:if test="${purchase.paymentOption=='1  '}">
+	  						<option value="1" selected="selected">현금구매</option>
+	  						<option value="2">신용구매</option>
+	  					</c:if>
+	  					
+	  					<c:if test="${purchase.paymentOption=='2  '}">
+	  						<option value="1" >현금구매</option>
+	  						<option value="2" selected="selected">신용구매</option>
+	  					</c:if>
+				
 			</select>
+			
 		</div>
 		
 		<hr/>
