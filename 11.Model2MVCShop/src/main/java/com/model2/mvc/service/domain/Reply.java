@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Reply{
 	
+	private int replyNo;
+	
 	private List<String> reply;
 	
 	private int prodNo;
@@ -32,9 +34,18 @@ public class Reply{
 		public void setUserId(String userId) {
 			this.userId = userId;
 		}
+		
+		public int getReplyNo() {
+			return replyNo;
+		}
+		public void setReplyNo(int replyNo) {
+			this.replyNo = replyNo;
+		}
+
+		
 		@Override
 		public String toString() {
-			return "Reply [reply=" + reply + ", prodNo=" + prodNo + ", userId=" + userId + "]";
+			return "Reply [reply=" + reply + ", prodNo=" + prodNo + ", userId=" + userId + " replyNo=" + replyNo + "]";
 		}
 		
 		

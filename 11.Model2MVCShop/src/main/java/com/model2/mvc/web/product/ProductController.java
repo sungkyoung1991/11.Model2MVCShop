@@ -60,7 +60,7 @@ public class ProductController {
 	
 		if(file.getSize()>0){
 		product.setManuDate(product.getManuDate().replaceAll("-", ""));
-		String temDir ="/Users/sungkyoung-kim/git/11.Model2MVCShop/11.Model2MVCShop/WebContent/images/uploadFiles";
+		String temDir ="/Users/gimseong-gyeong/git/11.Model2MVCShop/11.Model2MVCShop/WebContent/images/uploadFiles";
 		File UploadedFile = new File(temDir, file.getOriginalFilename());
 		product.setFileName(file.getOriginalFilename());
 		file.transferTo(UploadedFile);
@@ -194,7 +194,7 @@ public class ProductController {
 		
 	if(file.getSize()>0){
 		product.setManuDate(product.getManuDate().replaceAll("-", ""));
-		String temDir ="/Users/sungkyoung-kim/git/11.Model2MVCShop/11.Model2MVCShop/WebContent/images/uploadFiles";
+		String temDir ="/Users/gimseong-gyeong/git/11.Model2MVCShop/11.Model2MVCShop/WebContent/images/uploadFiles";
 		File UploadedFile = new File(temDir, file.getOriginalFilename());
 		product.setFileName(file.getOriginalFilename());
 		file.transferTo(UploadedFile);

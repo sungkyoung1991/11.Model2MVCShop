@@ -8,6 +8,7 @@
 <mapper namespace="ReplyMapper">
 
 	<resultMap id="replySelectMap" type="reply">
+		<result property="replyNo" column="reply_NO" jdbcType="INTEGER" />
 		<result property="prodNo" column="PROD_NO" jdbcType="INTEGER" />
 		<result property="reply" column="reply" jdbcType="VARCHAR" javaType="list" />
 		<result property="userId" column="user_id" jdbcType="VARCHAR" />
@@ -21,10 +22,12 @@
 			prod_no=#{prodNo:INTEGER},
 			user_id=#{userId:VARCHAR}
 		</set>
+		
+			where reply_no=#{replyNo:INTEGER}
 	</update>
 	
 		<select  id="getReply"  parameterType="reply" resultMap="replySelectMap">
-		SELECT pr.prod_no, pr.reply, pr.user_id
+		SELECT pr.reply_no, pr.prod_no, pr.reply, pr.user_id
 	  										 FROM prod_reply pr, product p
 	  										 	WHERE pr.prod_no = p.prod_no(+)
 	  										 	And pr.prod_no=#{prodNo:INTEGER}
@@ -34,8 +37,10 @@
 	 
 	 
 	<insert id="insertReply" parameterType="reply">
-		INSERT INTO prod_reply (prod_no, reply, user_id)
+		INSERT INTO prod_reply (reply_no, prod_no, reply, user_id)
 		VALUES (
+		
+		SEQ_PROD_REPLY_REPLY_NO.NEXTVAL,
 		#{prodNo:INTEGER},
 		#{reply:VARCHAR},
 		#{userId:VARCHAR}

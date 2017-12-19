@@ -3,3 +3,4 @@ encoding//WebContent/index.jsp=UTF-8
 encoding//WebContent/javascript/calendar.js=MS949
 encoding//WebContent/user/addUserView.jsp=EUC-KR
 encoding//src/main/java/com/model2/mvc/common/aspect/LogAspectJ.java=euc-kr
+encoding//src/main/java/com/model2/mvc/common/web/LogonCheckInterceptor.java=euc-kr
